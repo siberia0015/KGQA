@@ -1,4 +1,5 @@
 import codecs
+# 获取人物数组
 def get_character():
     f = codecs.open('./raw_data/relation.txt','r','utf-8')
     data = []
