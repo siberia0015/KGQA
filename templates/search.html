@@ -308,7 +308,7 @@
                 <!--Page content-->
                 <!--===================================================-->
                 <div id="page-content">
-                    <h4 class="text-main pad-btm bord-btm">人物关系可视化</h4>
+                    <h4 class="text-main pad-btm bord-btm">查询结果可视化</h4>
                     <div class="row">
                         <div class="col-lg-6">
                         </div>
@@ -358,10 +358,6 @@
 
                 </div>
 
-                <div>
-                    <table id="demo" lay-filter="test"></table>
-                </div>
-
                 <!--===================================================-->
                 <!--End page content-->
             </div>
@@ -389,14 +385,6 @@
                                             </span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="{{ url_for('get_all_relation') }}">
-                                            <i class="fa fa-pie-chart" style="width:24px"></i>
-                                            <span class="menu-title">
-                                                <strong>总览</strong>
-                                            </span>
-                                        </a>
-                                    </li>
                                     <!--Menu list item-->
                                     <li class="list-divider"></li>
                                     <!--Category name-->
@@ -405,7 +393,7 @@
                                     <li>
                                         <a href="{{ url_for('KGQA') }}">
                                             <i class="fa fa-question-circle" style="width:24px"></i>
-                                            <span class="menu-title">书籍推荐问答</span>
+                                            <span class="menu-title">问答</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -670,8 +658,9 @@
                 $("#list").empty();
                 var listHtml = '';
                 // 循环取json中的数据,并呈现在列表中
-                listHtml += '<table width="400" border="1">';
-                listHtml += '<tr><td>类型</td><td>名称</td></tr>';
+                listHtml += '<table class="layui-table"><colgroup><col width="150"><col width="200"><col></colgroup>';
+                listHtml += '<thead><tr><td>类型</td> <td>名称</td></tr></thead>';
+                listHtml += '<tbody>'
                 CA_LIST = {
                     0: "作者",
                     1: "分类",
@@ -700,7 +689,7 @@
                     listHtml += '<td>' + json['data'][i].name + '</td>';
                     listHtml += '</tr>';
                 })
-                listHtml += '</table>';
+                listHtml += '</tbody></table>';
                 $("#list").append(listHtml);
 
                 option.series[0].nodes = json.data.map(function (node, idx) {
@@ -721,8 +710,9 @@
                 $("#list").empty();
                 var listHtml = '';
                 // 循环取json中的数据,并呈现在列表中
-                listHtml += '<table width="400" border="1">';
-                listHtml += '<tr><td>类型</td><td>名称</td></tr>';
+                listHtml += '<table class="layui-table"><colgroup><col width="150"><col width="200"><col></colgroup>';
+                listHtml += '<thead><tr><td>类型</td> <td>名称</td></tr></thead>';
+                listHtml += '<tbody>'
                 CA_LIST = {
                     0: "作者",
                     1: "分类",
@@ -751,7 +741,7 @@
                     listHtml += '<td>' + json['data'][i].name + '</td>';
                     listHtml += '</tr>';
                 })
-                listHtml += '</table>';
+                listHtml += '</tbody></table>';
                 $("#list").append(listHtml);
 
                 option.series[0].nodes = json.data.map(function (node, idx) {
@@ -773,8 +763,9 @@
                 $("#list").empty();
                 var listHtml = '';
                 // 循环取json中的数据,并呈现在列表中
-                listHtml += '<table width="400" border="1">';
-                listHtml += '<tr><td>类型</td><td>名称</td></tr>';
+                listHtml += '<table class="layui-table"><colgroup><col width="150"><col width="200"><col></colgroup>';
+                listHtml += '<thead><tr><td>类型</td> <td>名称</td></tr></thead>';
+                listHtml += '<tbody>'
                 CA_LIST = {
                     0: "作者",
                     1: "分类",
@@ -803,7 +794,7 @@
                     listHtml += '<td>' + json['data'][i].name + '</td>';
                     listHtml += '</tr>';
                 })
-                listHtml += '</table>';
+                listHtml += '</tbody></table>';
                 $("#list").append(listHtml);
 
                 option.series[0].nodes = json.data.map(function (node, idx) {

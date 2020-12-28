@@ -34,6 +34,7 @@ def KGQA_answer():
     # get_target_array() 得到有关实体和关系的数组，如['贾珠','母亲','贾珠']
     # get_KGQA_answer() 返回一个数组，包含查出来的所有路径上的实体，查出实体的详细信息，查出实体的图片
     json_data = get_KGQA_answer(get_target_array(str(question)))
+    print(json_data)
     return jsonify(json_data)
 # 按名字搜索
 @app.route('/search_name', methods=['GET', 'POST'])
@@ -41,7 +42,7 @@ def search_name():
     method = request.args.get('method')
     name = request.args.get('name')
     json_data=query(str(name), method)
-    # print(json_data)
+    print(json_data)
     return jsonify(json_data)
 # 进入人物关系全貌页
 @app.route('/get_all_relation', methods=['GET', 'POST'])

@@ -33,6 +33,14 @@
     <!--=================================================-->
     <!--Demo script [ DEMONSTRATION ]-->
     <script src="../static/js/nifty-demo.min.js"></script>
+    <style>
+        .headLeftDivFont {
+            font-weight: 500;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+    <link rel="stylesheet" href="./static/layui/css/layui.css">
 </head>
 
 <body>
@@ -47,7 +55,7 @@
                     <a href="{{ url_for('index') }}" class="navbar-brand">
                         <img src="../static/images/logo.jpg" alt="Nifty Logo" class="brand-icon">
                         <div class="brand-title">
-                            <span class="brand-text">KGQA</span>
+                            <span class="brand-text">问答系统</span>
                         </div>
                     </a>
                 </div>
@@ -87,7 +95,7 @@
                         <div class="col-lg-6">
                             <div class="input-group">
                                 <input type="text" id="search" class="form-control input-lg"
-                                    placeholder="请输入你的问题(eg.贾宝玉的爸爸是谁？)">
+                                    placeholder="请输入你的问题(eg.鲁迅的作品有哪些？)">
                                 <span class="input-group-addon btn btn-primary" onclick="search()">搜索</span>
                             </div>
                         </div>
@@ -260,6 +268,43 @@
                                     $.getJSON('/KGQA_answer', {
                                         name: $("#search").val(),
                                     }, function (json) {
+                                        $("#list").empty();
+                                        var listHtml = '';
+                                        // 循环取json中的数据,并呈现在列表中
+                                        listHtml += '<table class="layui-table"><colgroup><col width="150"><col width="200"><col></colgroup>';
+                                        listHtml += '<thead><tr><td>类型</td> <td>名称</td></tr></thead>';
+                                        listHtml += '<tbody>'
+                                        CA_LIST = {
+                                            0: "作者",
+                                            1: "分类",
+                                            2: "出版年份",
+                                            3: "小说",
+                                            4: "编程",
+                                            5: "web",
+                                            6: "算法",
+                                            7: "神经网络",
+                                            8: "科技",
+                                            9: "名著",
+                                            10: "推理",
+                                            11: "悬疑",
+                                            12: "青春",
+                                            13: "言情",
+                                            14: "校园",
+                                            15: "经济",
+                                            16: "漫画",
+                                            17: "散文",
+                                            18: "其他"
+                                        }
+                                        $.each(json[0]['data'], function (i) {
+                                            // 先遍历data数组，再遍历links数组
+                                            listHtml += '<tr>';
+                                            listHtml += '<td>' + CA_LIST[json[0]['data'][i].category] + '</td>';
+                                            listHtml += '<td>' + json[0]['data'][i].name + '</td>';
+                                            listHtml += '</tr>';
+                                        })
+                                        listHtml += '</tbody></table>';
+                                        $("#list").append(listHtml);
+
                                         option.series[0].nodes = json[0].data.map(function (node, idx) {
                                             node.id = idx;
                                             return node;
@@ -289,6 +334,12 @@
                     </div>
 
                 </div>
+
+                <div class="headLeftDivFont">搜索结果</div>
+                <div name="list" id="list">
+
+                </div>
+
                 <!--===================================================-->
                 <!--End page content-->
             </div>
@@ -305,22 +356,14 @@
                             <div class="nano-content">
                                 <ul id="mainnav-menu" class="list-group">
                                     <!--Category name-->
-                                    <li class="list-header"> 人物关系可视化</li>
+                                    <li class="list-header"> 查询系统</li>
                                     <!--Menu list item-->
                                     <!--Menu list item-->
                                     <li>
                                         <a href="{{ url_for('search')}}">
                                             <i class="fa fa-search" style="width:24px"></i>
                                             <span class="menu-title">
-                                                <strong>检索人物关系</strong>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url_for('get_all_relation') }}">
-                                            <i class="fa fa-pie-chart" style="width:24px"></i>
-                                            <span class="menu-title">
-                                                <strong>总览</strong>
+                                                <strong>查询</strong>
                                             </span>
                                         </a>
                                     </li>

@@ -76,12 +76,6 @@ def get_KGQA_answer(array):
             # 下标为-1代表输出最后一个数
             name=data_array[-1]['p.Name']
         # 在数据库中查找以name为头实体，array[i+1]为关系的尾实体
-        print(
-        "match(p)-[r]->(n) where r.relation =~ '.*%s.*' and (n.Name =~ '.*%s.*' or p.Name =~ '.*%s.*') return p.Name,n.Name,r.relation,p.cate,n.cate\
-        "
-        % (similar_words[array[i+1]], name, name)
-        )
-
         data = graph.run(
         "match(p)-[r]->(n) where r.relation =~ '.*%s.*' and (n.Name =~ '.*%s.*' or p.Name =~ '.*%s.*') return p.Name,n.Name,r.relation,p.cate,n.cate\
         "
@@ -92,7 +86,7 @@ def get_KGQA_answer(array):
         data = list(data)
         # data_array储存查出来的所有路径上的实体
         data_array.extend(data)
-        print(data_array)
+        # print(data_array)
 
         if str(data_array[-1]['p.cate']) in tags_list:
             result = str(data_array[-1]['p.Name'])
