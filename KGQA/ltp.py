@@ -38,8 +38,9 @@ def get_target_array(words):
     # words_mark用于给词语打上词性标签
     pos_array = words_mark(seg_array)
     print(pos_array)
+    exception=['分类','包含']
     for i in range(len(pos_array)):
-        if pos_array[i] in target_pos or seg_array[i] == '分类':
+        if pos_array[i] in target_pos or seg_array[i] in exception:
             target_array.append(seg_array[i])
     target_array.append(seg_array[0])
     print(target_array)

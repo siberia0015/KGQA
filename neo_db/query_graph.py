@@ -31,7 +31,7 @@ def query(name, method):
         return get_json_data(data)
     
 def get_json_data(data):
-    json_data={'data':[],"links":[]}
+    json_data={'data':[],"links":[],"code":0}
     d=[]
 
     for i in data:
@@ -86,20 +86,18 @@ def get_KGQA_answer(array):
         data = list(data)
         # data_array储存查出来的所有路径上的实体
         data_array.extend(data)
-        # print(data_array)
 
-        if str(data_array[-1]['p.cate']) in tags_list:
-            result = str(data_array[-1]['p.Name'])
-        else:
-            result = '默认'
-
+    if str(data_array[-1]['p.cate']) in tags_list:
+        result = str(data_array[-1]['p.Name'])
+    else:
+        result = '默认'
     # 打开json查找图片地址
     with open('./spider/json/data.json', encoding='utf-8')as f:
         data = json.load(f)
         img_url = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1802553443,2497346274&fm=26&gp=0.jpg'
-        for i in data[name]:
+        for i in data[result]:
             if str(i) == "图片链接":
-                img_url = str(data[name][i])
+                img_url = str(data[result][i])
                 break
         # 将图片保存到本地
         request.urlretrieve(img_url, './spider/images/'+'%s.jpg' % (result))
@@ -128,10 +126,13 @@ def get_answer_profile(name):
     with open('./spider/json/data.json', encoding='utf-8')as f:
         data = json.load(f)
         img_url = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1802553443,2497346274&fm=26&gp=0.jpg'
-        for i in data[name]:
-            if str(i) == "图片链接":
-                img_url = str(data[name][i])
-                break
+        try:
+            for i in data[name]:
+                if str(i) == "图片链接":
+                    img_url = str(data[name][i])
+                    break
+        except:
+            print('fxk')
         # 将图片保存到本地
         request.urlretrieve(img_url, './spider/images/'+'%s.jpg' % (result))
 
