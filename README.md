@@ -32,3 +32,6 @@
 * 3.去 [这里](http://pyltp.readthedocs.io/zh_CN/latest/api.html#id2) 下载好ltp模型。[ltp简介](http://ltp.ai/)<br>
 * 4.在KGQA目录下，修改ltp.py里的ltp模型文件的存放目录<br>
 * 5.运行python app.py,浏览器打开localhost:5000即可查看<br>
+
+预览：<br>
+![avatar](https://github.com/siberia0015/KGQA/blob/master/%E9%A2%84%E8%A7%88.png)
