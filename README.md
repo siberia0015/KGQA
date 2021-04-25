@@ -34,4 +34,5 @@
 * 5.运行python app.py,浏览器打开localhost:5000即可查看<br>
 
 预览：<br>
-![avatar](https://github.com/siberia0015/KGQA/blob/master/%E9%A2%84%E8%A7%88.png)
+![](https://img2020.cnblogs.com/blog/1470697/202104/1470697-20210425085339148-1289236891.png)
+
